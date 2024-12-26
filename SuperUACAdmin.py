@@ -33,7 +33,7 @@ class SuperUACAdmin(QMainWindow):
             
             # Open registry key and set EnableLUA
             with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, reg_key_path, 0, winreg.KEY_SET_VALUE) as reg_key:
-                winreg.SetValueEx(reg_key, "EnableLUA", 0, winreg.REG_DWORD, 1)
+                winreg.SetValueEx(reg_key, "EnableLUA", 1, winreg.REG_DWORD, 1)
             
             # Lock the registry key (this happens only if "Enable SUPER UAC" is clicked)
             self.lock_registry_key(reg_key_path)
@@ -49,7 +49,7 @@ class SuperUACAdmin(QMainWindow):
             
             # Open registry key and set EnableLUA to 0 to disable Super UAC
             with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, reg_key_path, 0, winreg.KEY_SET_VALUE) as reg_key:
-                winreg.SetValueEx(reg_key, "EnableLUA", 0, winreg.REG_DWORD, 0)
+                winreg.SetValueEx(reg_key, "EnableLUA", 1, winreg.REG_DWORD, 0)
 
             # Skip locking the registry key here to disable Super UAC
             QMessageBox.information(self, "Success", "UAC disabled successfully!", QMessageBox.Ok)
